@@ -43,8 +43,6 @@ final class SelectedFilmViewController: UIViewController {
 
     private func setDetails(filmID: FilmViewData.Results?) {
         guard let id = filmID?.id else { return }
-        model.getFilmDetails(filmID: id) { [weak self] _ in
-        }
     }
 
     private func tableViewSetup() {

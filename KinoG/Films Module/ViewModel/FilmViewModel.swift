@@ -1,9 +1,5 @@
-//
-//  FilmViewModel.swift
-//  KinoG
-//
-//  Created by Мажит Закиров on 12.10.2021.
-//
+// FilmViewModel.swift
+// Copyright © RoadMap. All rights reserved.
 
 import Foundation
 
@@ -22,7 +18,7 @@ final class FilmViewModel: FilmViewModelProtocol {
     // MARK: - Private Properties
 
     private let filmService = FilmService()
-    
+
     // MARK: - Public Methods
 
     func getFilms(type: Int) {

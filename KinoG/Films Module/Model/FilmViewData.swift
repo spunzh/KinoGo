@@ -3,6 +3,7 @@
 
 import Foundation
 
+// FilmViewData
 enum FilmViewData {
     case success([Results])
     case failure(Error)
