@@ -14,10 +14,16 @@ protocol FilmViewModelProtocol {
 }
 
 final class FilmViewModel: FilmViewModelProtocol {
-    private let filmService = FilmService()
-    var updateViewData: ((FilmViewData) -> Void)?
+    // MARK: - Public Properties
 
+    var updateViewData: ((FilmViewData) -> Void)?
     var films: [FilmViewData.Results] = []
+
+    // MARK: - Private Properties
+
+    private let filmService = FilmService()
+    
+    // MARK: - Public Methods
 
     func getFilms(type: Int) {
         filmService.getFilms(type: type) { [weak self] result in
