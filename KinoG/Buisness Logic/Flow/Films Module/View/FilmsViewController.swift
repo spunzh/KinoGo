@@ -8,16 +8,6 @@ final class FilmsViewController: UIViewController {
 
     var viewModel: FilmViewModelProtocol?
 
-    enum CellTypes {
-        case filmType
-        case films
-    }
-
-    enum CellIdentifiers: String {
-        case filmCell
-        case filmTypeCell
-    }
-
     // MARK: - Visiual Components
 
     private let filmTableView: UITableView = {
@@ -30,12 +20,24 @@ final class FilmsViewController: UIViewController {
     // MARK: - Private Properties
 
     private let cellTypes: [CellTypes] = [.filmType, .films]
-    private var filmViewData: FilmViewData = .initial {
+    private var filmViewData: FilmViewData<[Film], Error> = .initial {
         didSet {
             DispatchQueue.main.async {
                 self.updateViewDataState()
             }
         }
+    }
+
+    // MARK: - Cell Enums
+
+    private enum CellTypes {
+        case filmType
+        case films
+    }
+
+    private enum CellIdentifiers: String {
+        case filmCell
+        case filmTypeCell
     }
 
     // MARK: - Life Cycle
@@ -94,8 +96,7 @@ extension FilmsViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let types = cellTypes[section]
         switch types {
-        case .filmType:
-            return 1
+        case .filmType: return 1
         case .films:
             guard case let .success(films) = filmViewData else { return 0 }
             return films.count
@@ -147,5 +148,10 @@ extension FilmsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension FilmsViewController: UITableViewDelegate {
-    func tableView(_: UITableView, didSelectRowAt _: IndexPath) {}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard case let .success(films) = filmViewData else { return }
+        let vc = FilmDetailsViewController()
+        vc.viewModel = FilmDetailsViewModel(filmID: films[indexPath.row].id)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -1,9 +1,9 @@
-// SelectedFilmTableViewCell.swift
+// FilmDetailsTableViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-final class SelectedFilmTableViewCell: UITableViewCell {
+final class FilmDetailsTableViewCell: UITableViewCell {
     private let filmImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
