@@ -22,7 +22,7 @@ final class FilmTypeTableViewCell: UITableViewCell {
 
     // MARK: - Public Properties
 
-    public var didSelect: ((FilmType) -> Void)?
+    var didSelect: ((FilmType) -> Void)?
 
     // MARK: - Private Methods
 

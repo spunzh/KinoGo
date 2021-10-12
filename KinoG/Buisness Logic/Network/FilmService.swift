@@ -6,7 +6,7 @@ import Foundation
 final class FilmService {
     // MARK: - Public Methods
 
-    public func getFilms(type: Int, complition: @escaping (FilmViewData) -> Void) {
+    public func getFilms(type: Int, complition: @escaping (Result<[Film], Error>) -> Void) {
         let adress = urlSetup(type: type)
         guard let url = URL(string: adress) else { return }
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
@@ -18,7 +18,7 @@ final class FilmService {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let film = try decoder.decode(FilmViewData.Film.self, from: jdata)
+                let film = try decoder.decode(Objects.self, from: jdata)
                 let details = film.results
                 complition(.success(details))
             } catch {
@@ -28,7 +28,7 @@ final class FilmService {
         dataTask.resume()
     }
 
-    public func getFilmDetails(filmID: Int, complition: @escaping (FilmViewData.Results) -> Void) {
+    public func getFilmDetails(filmID: Int, complition: @escaping (Film) -> Void) {
         let adress =
             "https://api.themoviedb.org/3/movie/\(filmID)?api_key=9ad7d04f6206bfa729848e1f3f2ffb2d&language=en-US"
         guard let url = URL(string: adress) else { return }
@@ -40,7 +40,7 @@ final class FilmService {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let results = try decoder.decode(FilmViewData.Results.self, from: jdata)
+                let results = try decoder.decode(Film.self, from: jdata)
                 complition(results)
             } catch {
                 print("Error serialization json", error)

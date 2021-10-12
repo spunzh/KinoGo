@@ -39,13 +39,13 @@ final class SelectedFilmTableViewCell: UITableViewCell {
 
     // MARK: - Public Methods
 
-    public func fill(with film: FilmViewData.Results) {
+    func fill(with film: Film) {
         filmDateLabel.text = film.releaseDate
         filmDiscriptionLabel.text = film.overview
         filmNameLabel.text = film.title
     }
 
-    public func setPicture(type: FilmViewData.Results) {
+    func setPicture(type: Film) {
         let adress = "\(imageCatalogAdress)\(type.posterPath)"
         guard let URL = URL(string: adress) else { return }
         DispatchQueue.main.async {

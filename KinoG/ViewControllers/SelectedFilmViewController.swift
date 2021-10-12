@@ -15,13 +15,13 @@ final class SelectedFilmViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    public var filmID: FilmViewData.Results?
+    var filmID: Film?
 
     // MARK: - Private Properties
 
     private let model = FilmService()
     private let identifier = "selectedFilmCell"
-    private var details: FilmViewData.Results? {
+    private var details: Film? {
         didSet {
             DispatchQueue.main.async {
                 self.filmTableView.reloadData()
@@ -41,7 +41,7 @@ final class SelectedFilmViewController: UIViewController {
 
     // MARK: - Private Methods
 
-    private func setDetails(filmID: FilmViewData.Results?) {
+    private func setDetails(filmID: Film?) {
         guard let id = filmID?.id else { return }
     }
 

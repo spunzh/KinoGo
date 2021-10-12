@@ -4,6 +4,10 @@
 import UIKit
 
 final class FilmsViewController: UIViewController {
+    // MARK: - Public Properties
+
+    var viewModel: FilmViewModelProtocol?
+
     enum CellTypes {
         case filmType
         case films
@@ -23,20 +27,23 @@ final class FilmsViewController: UIViewController {
         return tableView
     }()
 
-    // MARK: - Public Properties
-
-    var viewModel: FilmViewModelProtocol?
-
     // MARK: - Private Properties
 
     private let cellTypes: [CellTypes] = [.filmType, .films]
-    private var filmViewData: FilmViewData?
+    private var filmViewData: FilmViewData = .initial {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateViewDataState()
+            }
+        }
+    }
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         tableViewSetup()
         viewModel?.getFilms(type: 0)
+        updateViewDataState()
         updateView()
     }
 
@@ -58,18 +65,21 @@ final class FilmsViewController: UIViewController {
         )
     }
 
+    private func updateViewDataState() {
+        switch filmViewData {
+        case .initial:
+            filmTableView.isHidden = true
+        case .success:
+            filmTableView.isHidden = false
+            filmTableView.reloadData()
+        case let .failure(error):
+            print(error)
+        }
+    }
+
     private func updateView() {
         viewModel?.updateViewData = { [weak self] viewData in
-            switch viewData {
-            case .success: break
-            case .reload:
-                DispatchQueue.main.async {
-                    self?.filmTableView.reloadData()
-                }
-            case let .failure(error):
-                // TODO: - Добавить Алерт с ошибкой
-                print(error.localizedDescription)
-            }
+            self?.filmViewData = viewData
         }
     }
 }
@@ -87,7 +97,8 @@ extension FilmsViewController: UITableViewDataSource {
         case .filmType:
             return 1
         case .films:
-            return viewModel?.films.count ?? 0
+            guard case let .success(films) = filmViewData else { return 0 }
+            return films.count
         }
     }
 
@@ -118,9 +129,9 @@ extension FilmsViewController: UITableViewDataSource {
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: CellIdentifiers.filmCell.rawValue) as? FilmTableViewCell
             else { return UITableViewCell() }
-            guard let viewModel = viewModel else { return UITableViewCell() }
-            cell.fill(with: viewModel.films[indexPath.row])
-            cell.setPicture(type: viewModel.films[indexPath.row])
+            guard case let .success(films) = filmViewData else { return UITableViewCell() }
+            cell.fill(with: films[indexPath.row])
+            cell.setPicture(type: films[indexPath.row])
             return cell
         }
     }
