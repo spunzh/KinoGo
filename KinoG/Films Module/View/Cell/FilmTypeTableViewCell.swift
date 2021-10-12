@@ -4,15 +4,14 @@
 import UIKit
 
 final class FilmTypeTableViewCell: UITableViewCell {
-    
     enum FilmType {
         case popular
         case upcoming
         case topRated
     }
-    
+
     // MARK: - Visual Components
-    
+
     private let filmsSegmetedControll: UISegmentedControl = {
         let items = ["Popular", "Top Rated", "Upcoming"]
         let segmentControll = UISegmentedControl(items: items)
@@ -20,23 +19,23 @@ final class FilmTypeTableViewCell: UITableViewCell {
         segmentControll.translatesAutoresizingMaskIntoConstraints = false
         return segmentControll
     }()
-    
+
     // MARK: - Public Properties
-    
-    public var didSelect: ((FilmType) -> ())?
-    
+
+    public var didSelect: ((FilmType) -> Void)?
+
     // MARK: - Private Methods
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
+
+    override func setSelected(_: Bool, animated _: Bool) {
         filmsSegmetedControll.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
     }
-    
+
     override func layoutSubviews() {
         contentView.addSubview(filmsSegmetedControll)
-        
+
         filmsSegmetedControllConstraintSetup()
     }
-    
+
     @objc private func segmentChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -49,7 +48,7 @@ final class FilmTypeTableViewCell: UITableViewCell {
             print("error")
         }
     }
-    
+
     private func filmsSegmetedControllConstraintSetup() {
         NSLayoutConstraint.activate([
             filmsSegmetedControll.widthAnchor.constraint(equalTo: contentView.widthAnchor),

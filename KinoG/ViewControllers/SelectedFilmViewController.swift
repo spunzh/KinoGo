@@ -5,59 +5,53 @@ import UIKit
 
 final class SelectedFilmViewController: UIViewController {
     // MARK: - Visiual Components
-    
+
     private let filmTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     // MARK: - Public Properties
-    
-    public var filmID: Results?
-    
+
+    public var filmID: FilmViewData.Results?
+
     // MARK: - Private Properties
-    
-    private let model = FilmRequest()
+
+    private let model = FilmService()
     private let identifier = "selectedFilmCell"
-    private var details: Results? {
+    private var details: FilmViewData.Results? {
         didSet {
             DispatchQueue.main.async {
                 self.filmTableView.reloadData()
             }
         }
     }
-    
+
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         view = filmTableView
         view.backgroundColor = .white
-        
+
         tableViewSetup()
         setDetails(filmID: filmID)
     }
-    
+
     // MARK: - Private Methods
-    
-    private func setDetails(filmID: Results?) {
+
+    private func setDetails(filmID: FilmViewData.Results?) {
         guard let id = filmID?.id else { return }
-        model.getFilmDetails(filmID: id) { [weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(details):
-                self?.details = details
-            }
+        model.getFilmDetails(filmID: id) { [weak self] _ in
         }
     }
-    
+
     private func tableViewSetup() {
         filmTableView.dataSource = self
         filmTableView.rowHeight = UITableView.automaticDimension
         filmTableView.estimatedRowHeight = 190
-        
+
         filmTableView.register(SelectedFilmTableViewCell.self, forCellReuseIdentifier: identifier)
     }
 }
@@ -65,11 +59,11 @@ final class SelectedFilmViewController: UIViewController {
 // MARK: - SelectedFilmViewController
 
 extension SelectedFilmViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         1
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    func tableView(_ tableView: UITableView, cellForRowAt _: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SelectedFilmTableViewCell
         else { return UITableViewCell() }
         if let filmDetails = details {
