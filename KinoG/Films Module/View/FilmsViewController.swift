@@ -23,25 +23,19 @@ final class FilmsViewController: UIViewController {
         return tableView
     }()
 
+    // MARK: - Public Properties
+
+    var viewModel: FilmViewModelProtocol?
+
     // MARK: - Private Properties
 
     private let cellTypes: [CellTypes] = [.filmType, .films]
-    private let model = FilmService()
-    var viewModel: FilmViewModelProtocol?
     private var filmViewData: FilmViewData?
-    private var films: [FilmViewData.Results] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.filmTableView.reloadData()
-            }
-        }
-    }
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         tableViewSetup()
-        // TODO: - Добавить Алерт с ошибкой
         viewModel?.getFilms(type: 0)
         updateView()
     }
@@ -67,8 +61,11 @@ final class FilmsViewController: UIViewController {
     private func updateView() {
         viewModel?.updateViewData = { [weak self] viewData in
             switch viewData {
-            case let .success(films):
-                self?.films = films
+            case .success: break
+            case .reload:
+                DispatchQueue.main.async {
+                    self?.filmTableView.reloadData()
+                }
             case let .failure(error):
                 // TODO: - Добавить Алерт с ошибкой
                 print(error.localizedDescription)
@@ -90,7 +87,7 @@ extension FilmsViewController: UITableViewDataSource {
         case .filmType:
             return 1
         case .films:
-            return films.count
+            return viewModel?.films.count ?? 0
         }
     }
 
@@ -121,8 +118,9 @@ extension FilmsViewController: UITableViewDataSource {
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: CellIdentifiers.filmCell.rawValue) as? FilmTableViewCell
             else { return UITableViewCell() }
-            cell.fill(with: films[indexPath.row])
-            cell.setPicture(type: films[indexPath.row])
+            guard let viewModel = viewModel else { return UITableViewCell() }
+            cell.fill(with: viewModel.films[indexPath.row])
+            cell.setPicture(type: viewModel.films[indexPath.row])
             return cell
         }
     }
@@ -138,9 +136,5 @@ extension FilmsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension FilmsViewController: UITableViewDelegate {
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SelectedFilmViewController()
-        vc.filmID = films[indexPath.row]
-        present(vc, animated: true)
-    }
+    func tableView(_: UITableView, didSelectRowAt _: IndexPath) {}
 }

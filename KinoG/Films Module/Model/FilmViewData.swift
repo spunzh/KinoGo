@@ -6,6 +6,7 @@ import Foundation
 enum FilmViewData {
     case success([Results])
     case failure(Error)
+    case reload
 
     struct Film: Decodable {
         /// Фильмы
