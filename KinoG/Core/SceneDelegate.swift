@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         let mainVC = FilmsViewController()
+        mainVC.viewModel = FilmViewModel()
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }
