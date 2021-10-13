@@ -78,8 +78,8 @@ extension FilmDetailsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? FilmDetailsTableViewCell
         else { return UITableViewCell() }
         guard case let .success(details) = filmViewData else { return UITableViewCell() }
+        cell.loadImageCompletion = viewModel?.loadImage(path:completion:)
         cell.fill(with: details)
-        cell.setPicture(type: details)
         return cell
     }
 }

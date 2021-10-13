@@ -2,6 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
+import UIKit
 
 protocol MovieAPIServiceProtocol {
     func getFilms(type: Int, complition: @escaping (Result<[Film], Error>) -> Void)
@@ -14,7 +15,7 @@ final class MovieAPIService: MovieAPIServiceProtocol {
     func getFilms(type: Int, complition: @escaping (Result<[Film], Error>) -> Void) {
         let adress = urlSetup(type: type)
         guard let url = URL(string: adress) else { return }
-        let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+        URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let jdata = data else { return }
 
             do {
@@ -26,8 +27,7 @@ final class MovieAPIService: MovieAPIServiceProtocol {
             } catch {
                 print("Error serialization json", error)
             }
-        }
-        dataTask.resume()
+        }.resume()
     }
 
     func getFilmDetails(filmID: Int, complition: @escaping (Result<Film, Error>) -> Void) {
