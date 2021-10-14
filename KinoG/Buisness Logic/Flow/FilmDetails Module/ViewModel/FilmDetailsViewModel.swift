@@ -4,7 +4,7 @@
 import Foundation
 
 protocol FilmDetailsViewModelProtocol {
-    var updateViewData: ((FilmViewData<Film, Error>) -> Void)? { get set }
+    var updateViewData: ((FilmViewData<Film>) -> Void)? { get set }
     var filmID: Int? { get set }
     func getFilmDetails()
     func loadImage(path: String, completion: @escaping (Data?) -> ())
@@ -13,7 +13,7 @@ protocol FilmDetailsViewModelProtocol {
 final class FilmDetailsViewModel: FilmDetailsViewModelProtocol {
     // MARK: - Public Properties
 
-    var updateViewData: ((FilmViewData<Film, Error>) -> Void)?
+    var updateViewData: ((FilmViewData<Film>) -> Void)?
     var filmID: Int?
 
     // MARK: - Private Properties

@@ -3,15 +3,19 @@
 
 import Foundation
 
+typealias IntHandler = (Int) -> (Void)
+
 protocol FilmViewModelProtocol {
-    var updateViewData: ((FilmViewData<[Film], Error>) -> Void)? { get set }
+    var updateViewData: ((FilmViewData<[Film]>) -> Void)? { get set }
+    var onDetails: IntHandler? { get set }
     func getFilms(type: Int)
 }
 
 final class FilmViewModel: FilmViewModelProtocol {
     // MARK: - Public Properties
 
-    var updateViewData: ((FilmViewData<[Film], Error>) -> Void)?
+    var updateViewData: ((FilmViewData<[Film]>) -> Void)?
+    var onDetails: IntHandler?
 
     // MARK: - Private Properties
 

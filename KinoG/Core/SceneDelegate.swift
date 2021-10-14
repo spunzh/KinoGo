@@ -11,13 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
-
-        let mainVC = FilmsViewController()
-        let movieAPIService = MovieAPIService()
-        let imageAPIService = ImageAPIService()
-        mainVC.viewModel = FilmViewModel(networkService: movieAPIService, imageService: imageAPIService)
-        let navVC = UINavigationController(rootViewController: mainVC)
-        window?.rootViewController = navVC
         window?.makeKeyAndVisible()
+
+        let coordinator = ApplicationCoordinator()
+        coordinator.start()
     }
 }
