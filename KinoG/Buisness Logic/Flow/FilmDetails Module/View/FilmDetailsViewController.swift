@@ -21,7 +21,7 @@ final class FilmDetailsViewController: UIViewController {
     // MARK: - Private Properties
 
     private let identifier = "selectedFilmCell"
-    private var filmViewData: FilmViewData<Film, Error> = .initial {
+    private var filmViewData: FilmViewData<Film> = .initial {
         didSet {
             DispatchQueue.main.async {
                 self.updateViewState()

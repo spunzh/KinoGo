@@ -7,6 +7,7 @@ final class FilmsViewController: UIViewController {
     // MARK: - Public Properties
 
     var viewModel: FilmViewModelProtocol?
+    var onDetailsTap: (() -> ())?
 
     // MARK: - Visiual Components
 
@@ -20,7 +21,7 @@ final class FilmsViewController: UIViewController {
     // MARK: - Private Properties
 
     private let cellTypes: [CellTypes] = [.filmType, .films]
-    private var filmViewData: FilmViewData<[Film], Error> = .initial {
+    private var filmViewData: FilmViewData<[Film]> = .initial {
         didSet {
             DispatchQueue.main.async {
                 self.updateViewDataState()
@@ -150,8 +151,7 @@ extension FilmsViewController: UITableViewDataSource {
 extension FilmsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard case let .success(films) = filmViewData else { return }
-        let vc = FilmDetailsViewController()
-        vc.viewModel = FilmDetailsViewModel(filmID: films[indexPath.row].id)
-        navigationController?.pushViewController(vc, animated: true)
+        let id = films[indexPath.row].id
+        viewModel?.onDetails?(id)
     }
 }

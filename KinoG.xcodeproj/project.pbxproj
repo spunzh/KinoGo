@@ -10,6 +10,11 @@
 		BA1A0D992714F05A0068046A /* FilmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0D982714F05A0068046A /* FilmViewModel.swift */; };
 		BA1A0D9B2715D7DD0068046A /* ImageAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0D9A2715D7DD0068046A /* ImageAPIService.swift */; };
 		BA1A0DA02715D88D0068046A /* FilmDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0D9F2715D88D0068046A /* FilmDetailsViewModel.swift */; };
+		BA1A0DA7271865570068046A /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0DA6271865570068046A /* Assembly.swift */; };
+		BA1A0DAA2718777D0068046A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0DA92718777C0068046A /* Coordinator.swift */; };
+		BA1A0DAC271879A60068046A /* FilmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0DAB271879A60068046A /* FilmCoordinator.swift */; };
+		BA1A0DAE27187E6A0068046A /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0DAD27187E6A0068046A /* ApplicationCoordinator.swift */; };
+		BA1A0DB62718A04E0068046A /* CoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A0DB52718A04E0068046A /* CoordinatorTests.swift */; };
 		BAAD78FF26B57C5D00ECA342 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAAD78FD26B57C5D00ECA342 /* Main.storyboard */; };
 		BAAD790126B57C6000ECA342 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAD790026B57C6000ECA342 /* Assets.xcassets */; };
 		BAAD790426B57C6000ECA342 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAAD790226B57C6000ECA342 /* LaunchScreen.storyboard */; };
@@ -24,10 +29,26 @@
 		BAAD792626B57DFD00ECA342 /* FilmDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAD792526B57DFD00ECA342 /* FilmDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BA1A0DB72718A04E0068046A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAAD78EC26B57C5D00ECA342 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BAAD78F326B57C5D00ECA342;
+			remoteInfo = KinoG;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BA1A0D982714F05A0068046A /* FilmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewModel.swift; sourceTree = "<group>"; };
 		BA1A0D9A2715D7DD0068046A /* ImageAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAPIService.swift; sourceTree = "<group>"; };
 		BA1A0D9F2715D88D0068046A /* FilmDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViewModel.swift; sourceTree = "<group>"; };
+		BA1A0DA6271865570068046A /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		BA1A0DA92718777C0068046A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		BA1A0DAB271879A60068046A /* FilmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCoordinator.swift; sourceTree = "<group>"; };
+		BA1A0DAD27187E6A0068046A /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		BA1A0DB32718A04E0068046A /* KinoGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KinoGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA1A0DB52718A04E0068046A /* CoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorTests.swift; sourceTree = "<group>"; };
 		BAAD78F426B57C5D00ECA342 /* KinoG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinoG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAD78FE26B57C5D00ECA342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAAD790026B57C6000ECA342 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +66,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BA1A0DB02718A04E0068046A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAAD78F126B57C5D00ECA342 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -108,16 +136,43 @@
 		BA1A0DA12715E0060068046A /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				BA1A0DAB271879A60068046A /* FilmCoordinator.swift */,
 				BA1A0D952714ED6E0068046A /* Films Module */,
 				BAAD791E26B57DD100ECA342 /* FilmDetails Module */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
 		};
+		BA1A0DA5271865470068046A /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				BA1A0DA6271865570068046A /* Assembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		BA1A0DA8271877670068046A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				BA1A0DA92718777C0068046A /* Coordinator.swift */,
+				BA1A0DAD27187E6A0068046A /* ApplicationCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		BA1A0DB42718A04E0068046A /* KinoGTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA1A0DB52718A04E0068046A /* CoordinatorTests.swift */,
+			);
+			path = KinoGTests;
+			sourceTree = "<group>";
+		};
 		BAAD78EB26B57C5D00ECA342 = {
 			isa = PBXGroup;
 			children = (
 				BAAD78F626B57C5D00ECA342 /* KinoG */,
+				BA1A0DB42718A04E0068046A /* KinoGTests */,
 				BAAD78F526B57C5D00ECA342 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				BAAD78F426B57C5D00ECA342 /* KinoG.app */,
+				BA1A0DB32718A04E0068046A /* KinoGTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +211,8 @@
 		BAAD791326B57DBE00ECA342 /* Buisness Logic */ = {
 			isa = PBXGroup;
 			children = (
+				BA1A0DA8271877670068046A /* Coordinator */,
+				BA1A0DA5271865470068046A /* Assembly */,
 				BA1A0D962714ED8D0068046A /* Model */,
 				BAAD791426B57DBE00ECA342 /* Network */,
 				BA1A0DA12715E0060068046A /* Flow */,
@@ -201,6 +259,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BA1A0DB22718A04E0068046A /* KinoGTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA1A0DB92718A04E0068046A /* Build configuration list for PBXNativeTarget "KinoGTests" */;
+			buildPhases = (
+				BA1A0DAF2718A04E0068046A /* Sources */,
+				BA1A0DB02718A04E0068046A /* Frameworks */,
+				BA1A0DB12718A04E0068046A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA1A0DB82718A04E0068046A /* PBXTargetDependency */,
+			);
+			name = KinoGTests;
+			productName = KinoGTests;
+			productReference = BA1A0DB32718A04E0068046A /* KinoGTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BAAD78F326B57C5D00ECA342 /* KinoG */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAAD790826B57C6000ECA342 /* Build configuration list for PBXNativeTarget "KinoG" */;
@@ -226,9 +302,13 @@
 		BAAD78EC26B57C5D00ECA342 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					BA1A0DB22718A04E0068046A = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = BAAD78F326B57C5D00ECA342;
+					};
 					BAAD78F326B57C5D00ECA342 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -248,11 +328,19 @@
 			projectRoot = "";
 			targets = (
 				BAAD78F326B57C5D00ECA342 /* KinoG */,
+				BA1A0DB22718A04E0068046A /* KinoGTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BA1A0DB12718A04E0068046A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAAD78F226B57C5D00ECA342 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +393,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BA1A0DAF2718A04E0068046A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA1A0DB62718A04E0068046A /* CoordinatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAAD78F026B57C5D00ECA342 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,16 +411,28 @@
 				BA1A0DA02715D88D0068046A /* FilmDetailsViewModel.swift in Sources */,
 				BAAD791226B57DAD00ECA342 /* SceneDelegate.swift in Sources */,
 				BAAD791826B57DBE00ECA342 /* MovieAPIService.swift in Sources */,
+				BA1A0DAA2718777D0068046A /* Coordinator.swift in Sources */,
 				BAAD792626B57DFD00ECA342 /* FilmDetailsViewController.swift in Sources */,
 				BAAD791D26B57DC500ECA342 /* FilmTableViewCell.swift in Sources */,
+				BA1A0DA7271865570068046A /* Assembly.swift in Sources */,
 				BAAD792226B57DEB00ECA342 /* FilmTypeTableViewCell.swift in Sources */,
 				BAAD792426B57DF500ECA342 /* FilmDetailsTableViewCell.swift in Sources */,
 				BAAD791126B57DAD00ECA342 /* AppDelegate.swift in Sources */,
 				BA1A0D9B2715D7DD0068046A /* ImageAPIService.swift in Sources */,
+				BA1A0DAC271879A60068046A /* FilmCoordinator.swift in Sources */,
+				BA1A0DAE27187E6A0068046A /* ApplicationCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA1A0DB82718A04E0068046A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BAAD78F326B57C5D00ECA342 /* KinoG */;
+			targetProxy = BA1A0DB72718A04E0068046A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BAAD78FD26B57C5D00ECA342 /* Main.storyboard */ = {
@@ -346,6 +454,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BA1A0DBA2718A04E0068046A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5H9PQ69L77;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spunzh.KinoGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KinoG.app/KinoG";
+			};
+			name = Debug;
+		};
+		BA1A0DBB2718A04E0068046A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5H9PQ69L77;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spunzh.KinoGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KinoG.app/KinoG";
+			};
+			name = Release;
+		};
 		BAAD790626B57C6000ECA342 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -503,6 +661,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BA1A0DB92718A04E0068046A /* Build configuration list for PBXNativeTarget "KinoGTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA1A0DBA2718A04E0068046A /* Debug */,
+				BA1A0DBB2718A04E0068046A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BAAD78EF26B57C5D00ECA342 /* Build configuration list for PBXProject "KinoG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
