@@ -15,12 +15,20 @@ final class FilmViewModel: FilmViewModelProtocol {
 
     // MARK: - Private Properties
 
-    private let movieAPIService = MovieAPIService()
+    private let movieAPIService: MovieAPIServiceProtocol?
+    private let imageAPIService: ImageAPIServiceProtocol?
+
+    // MARK: - Initialization
+
+    init(networkService: MovieAPIServiceProtocol, imageService: ImageAPIServiceProtocol) {
+        movieAPIService = networkService
+        imageAPIService = imageService
+    }
 
     // MARK: - Public Methods
 
     func getFilms(type: Int) {
-        movieAPIService.getFilms(type: type) { [weak self] results in
+        movieAPIService?.getFilms(type: type) { [weak self] results in
             switch results {
             case let .success(films):
                 self?.updateViewData?(.success(films))

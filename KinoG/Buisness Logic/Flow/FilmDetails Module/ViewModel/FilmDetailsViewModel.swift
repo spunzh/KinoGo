@@ -16,24 +16,26 @@ final class FilmDetailsViewModel: FilmDetailsViewModelProtocol {
     var updateViewData: ((FilmViewData<Film, Error>) -> Void)?
     var filmID: Int?
 
-    // MARK: - Initialization
-
-    init(filmID: Int) {
-        self.filmID = filmID
-        getFilmDetails()
-    }
-
     // MARK: - Private Properties
 
-    private let movieAPIService = MovieAPIService()
-    private let imageAPIService = ImageAPIService()
+    private let movieAPIService: MovieAPIServiceProtocol?
+    private let imageAPIService: ImageAPIServiceProtocol?
+
+    // MARK: - Initialization
+
+    init(filmID: Int, networkService: MovieAPIServiceProtocol, imageService: ImageAPIServiceProtocol) {
+        self.filmID = filmID
+        movieAPIService = networkService
+        imageAPIService = imageService
+        getFilmDetails()
+    }
 
     // MARK: - Public Methods
 
     func getFilmDetails() {
         guard let filmID = filmID else { return }
 
-        movieAPIService.getFilmDetails(filmID: filmID) { [weak self] result in
+        movieAPIService?.getFilmDetails(filmID: filmID) { [weak self] result in
             switch result {
             case let .success(film):
                 self?.updateViewData?(.success(film))
@@ -44,7 +46,7 @@ final class FilmDetailsViewModel: FilmDetailsViewModelProtocol {
     }
 
     func loadImage(path: String, completion: @escaping (Data?) -> ()) {
-        imageAPIService.loadImage(url: path) { results in
+        imageAPIService?.loadImage(url: path) { results in
             switch results {
             case let .success(data):
                 completion(data)

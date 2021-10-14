@@ -13,7 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         let mainVC = FilmsViewController()
-        mainVC.viewModel = FilmViewModel()
+        let movieAPIService = MovieAPIService()
+        let imageAPIService = ImageAPIService()
+        mainVC.viewModel = FilmViewModel(networkService: movieAPIService, imageService: imageAPIService)
         let navVC = UINavigationController(rootViewController: mainVC)
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()

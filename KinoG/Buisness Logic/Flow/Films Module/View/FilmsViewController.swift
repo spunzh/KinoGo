@@ -150,8 +150,8 @@ extension FilmsViewController: UITableViewDataSource {
 extension FilmsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard case let .success(films) = filmViewData else { return }
-        let vc = FilmDetailsViewController()
-        vc.viewModel = FilmDetailsViewModel(filmID: films[indexPath.row].id)
+        let id = films[indexPath.row].id
+        let vc = AssemblerBuild.buildFilmsDetailsModule(id: id)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
