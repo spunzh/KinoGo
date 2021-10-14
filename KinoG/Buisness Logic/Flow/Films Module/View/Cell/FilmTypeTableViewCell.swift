@@ -32,7 +32,6 @@ final class FilmTypeTableViewCell: UITableViewCell {
 
     override func layoutSubviews() {
         contentView.addSubview(filmsSegmetedControll)
-
         filmsSegmetedControllConstraintSetup()
     }
 

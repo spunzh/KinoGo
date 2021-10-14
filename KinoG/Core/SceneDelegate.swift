@@ -14,7 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let mainVC = FilmsViewController()
         mainVC.viewModel = FilmViewModel()
-        window?.rootViewController = mainVC
+        let navVC = UINavigationController(rootViewController: mainVC)
+        window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }
 }

@@ -1,9 +1,15 @@
-// SelectedFilmTableViewCell.swift
+// FilmDetailsTableViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-final class SelectedFilmTableViewCell: UITableViewCell {
+final class FilmDetailsTableViewCell: UITableViewCell {
+    // MARK: - Public Methods
+
+    var loadImageCompletion: ((String, @escaping (Data?) -> ()) -> ())?
+
+    // MARK: - Visiual Components
+
     private let filmImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -33,24 +39,21 @@ final class SelectedFilmTableViewCell: UITableViewCell {
         return label
     }()
 
-    // MARK: - Private Properties
-
-    private let imageCatalogAdress = "https://image.tmdb.org/t/p/w500/"
-
     // MARK: - Public Methods
 
     func fill(with film: Film) {
         filmDateLabel.text = film.releaseDate
         filmDiscriptionLabel.text = film.overview
         filmNameLabel.text = film.title
+        setPicture(path: film.posterPath)
     }
 
-    func setPicture(type: Film) {
-        let adress = "\(imageCatalogAdress)\(type.posterPath)"
-        guard let URL = URL(string: adress) else { return }
-        DispatchQueue.main.async {
-            guard let data = try? Data(contentsOf: URL) else { return }
-            self.filmImageView.image = UIImage(data: data)
+    func setPicture(path: String) {
+        loadImageCompletion?(path) { [weak self] data in
+            DispatchQueue.main.async {
+                guard let data = data else { return }
+                self?.filmImageView.image = UIImage(data: data)
+            }
         }
     }
 

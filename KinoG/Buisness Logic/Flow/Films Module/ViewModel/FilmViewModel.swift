@@ -4,23 +4,23 @@
 import Foundation
 
 protocol FilmViewModelProtocol {
-    var updateViewData: ((FilmViewData) -> Void)? { get set }
+    var updateViewData: ((FilmViewData<[Film], Error>) -> Void)? { get set }
     func getFilms(type: Int)
 }
 
 final class FilmViewModel: FilmViewModelProtocol {
     // MARK: - Public Properties
 
-    var updateViewData: ((FilmViewData) -> Void)?
+    var updateViewData: ((FilmViewData<[Film], Error>) -> Void)?
 
     // MARK: - Private Properties
 
-    private let filmService = FilmService()
+    private let movieAPIService = MovieAPIService()
 
     // MARK: - Public Methods
 
     func getFilms(type: Int) {
-        filmService.getFilms(type: type) { [weak self] results in
+        movieAPIService.getFilms(type: type) { [weak self] results in
             switch results {
             case let .success(films):
                 self?.updateViewData?(.success(films))

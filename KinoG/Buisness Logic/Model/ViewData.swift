@@ -4,10 +4,10 @@
 import Foundation
 
 // FilmViewData
-enum FilmViewData {
+enum FilmViewData<Success, Failure> where Failure: Error {
     case initial
-    case success([Film])
-    case failure(Error)
+    case success(Success)
+    case failure(Failure)
 }
 
 ///
