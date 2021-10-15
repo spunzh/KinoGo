@@ -5,23 +5,25 @@ import Foundation
 import UIKit
 
 protocol MovieAPIServiceProtocol {
-    func getFilms(type: Int, complition: @escaping (Result<[Film], Error>) -> Void)
+    func getFilms(type: FilmType, complition: @escaping (Result<[Film], Error>) -> Void)
     func getFilmDetails(filmID: Int, complition: @escaping (Result<Film, Error>) -> Void)
 }
 
 final class MovieAPIService: MovieAPIServiceProtocol {
     // MARK: - Public Methods
 
-    func getFilms(type: Int, complition: @escaping (Result<[Film], Error>) -> Void) {
+    func getFilms(type: FilmType, complition: @escaping (Result<[Film], Error>) -> Void) {
         let adress = urlSetup(type: type)
         guard let url = URL(string: adress) else { return }
         URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let jdata = data else { return }
+            guard let data = data else { return }
 
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let film = try decoder.decode(Objects.self, from: jdata)
+                let film = try decoder.decode(Objects.self, from: data)
+                film.results.forEach { $0.type = type.rawValue }
+
                 let details = film.results
                 complition(.success(details))
             } catch {
@@ -51,13 +53,13 @@ final class MovieAPIService: MovieAPIServiceProtocol {
 
 // MARK: - Private Method
 
-private func urlSetup(type: Int) -> String {
+private func urlSetup(type: FilmType) -> String {
     switch type {
-    case 0:
+    case .popular:
         return "https://api.themoviedb.org/3/movie/popular?api_key=9ad7d04f6206bfa729848e1f3f2ffb2d&language=en-US&page=1"
-    case 1:
+    case .topRated:
         return "https://api.themoviedb.org/3/movie/top_rated?api_key=9ad7d04f6206bfa729848e1f3f2ffb2d&language=en-US&page=1"
-    case 2:
+    case .upcoming:
         return "https://api.themoviedb.org/3/movie/upcoming?api_key=9ad7d04f6206bfa729848e1f3f2ffb2d&language=en-US&page=1"
     default:
         return ""

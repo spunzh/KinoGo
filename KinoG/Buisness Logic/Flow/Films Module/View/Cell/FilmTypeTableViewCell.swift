@@ -3,13 +3,14 @@
 
 import UIKit
 
-final class FilmTypeTableViewCell: UITableViewCell {
-    enum FilmType {
-        case popular
-        case upcoming
-        case topRated
-    }
+//
+enum FilmType: String {
+    case popular
+    case upcoming
+    case topRated = "top_rated"
+}
 
+final class FilmTypeTableViewCell: UITableViewCell {
     // MARK: - Visual Components
 
     private let filmsSegmetedControll: UISegmentedControl = {

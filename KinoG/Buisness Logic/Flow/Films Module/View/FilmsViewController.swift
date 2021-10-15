@@ -45,7 +45,6 @@ final class FilmsViewController: UIViewController {
 
     override func viewDidLoad() {
         tableViewSetup()
-        viewModel?.getFilms(type: 0)
         updateViewDataState()
         updateView()
     }
@@ -118,11 +117,11 @@ extension FilmsViewController: UITableViewDataSource {
             cell.didSelect = { [weak self] type in
                 switch type {
                 case .popular:
-                    self?.viewModel?.getFilms(type: 0)
+                    self?.viewModel?.getFilms(type: FilmType.popular)
                 case .topRated:
-                    self?.viewModel?.getFilms(type: 1)
+                    self?.viewModel?.getFilms(type: FilmType.topRated)
                 case .upcoming:
-                    self?.viewModel?.getFilms(type: 2)
+                    self?.viewModel?.getFilms(type: FilmType.upcoming)
                 }
             }
             return cell

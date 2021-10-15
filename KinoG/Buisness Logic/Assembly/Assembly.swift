@@ -13,9 +13,11 @@ final class AssemblerBuild: AssemblyProtocol {
     static func buildFilmModule() -> UIViewController {
         let movieAPIService = MovieAPIService()
         let imageAPIService = ImageAPIService()
+        let repository = RealmDBService<Film>()
         let viewModel = FilmViewModel(
             networkService: movieAPIService,
-            imageService: imageAPIService
+            imageService: imageAPIService,
+            repository: repository
         )
         let vc = FilmsViewController()
         vc.viewModel = viewModel

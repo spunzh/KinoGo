@@ -2,6 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
+import RealmSwift
 
 // FilmViewData
 enum FilmViewData<Success> {
@@ -17,15 +18,21 @@ struct Objects: Decodable {
 }
 
 /// Фильм
-struct Film: Decodable {
+final class Film: Object, Decodable {
     /// Айди
-    let id: Int
+    @objc dynamic var id: Int
     /// Название
-    let title: String
+    @objc dynamic var title: String
     /// Дата релиза
-    let releaseDate: String
+    @objc dynamic var releaseDate: String
     /// Описание
-    let overview: String
+    @objc dynamic var overview: String
     /// Путь к картинке постера
-    let posterPath: String
+    @objc dynamic var posterPath: String
+
+    @objc dynamic var type: String?
+
+    override class func primaryKey() -> String? {
+        "id"
+    }
 }
