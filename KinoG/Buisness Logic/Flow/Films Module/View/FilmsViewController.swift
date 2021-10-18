@@ -132,7 +132,7 @@ extension FilmsViewController: UITableViewDataSource {
             else { return UITableViewCell() }
             guard case let .success(films) = filmViewData else { return UITableViewCell() }
             cell.fill(with: films[indexPath.row])
-            cell.setPicture(type: films[indexPath.row])
+            cell.loadImageCompletion = viewModel?.loadImage(path:completion:)
             return cell
         }
     }

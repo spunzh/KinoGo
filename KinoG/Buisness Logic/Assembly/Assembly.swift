@@ -13,11 +13,13 @@ final class AssemblerBuild: AssemblyProtocol {
     static func buildFilmModule() -> UIViewController {
         let movieAPIService = MovieAPIService()
         let imageAPIService = ImageAPIService()
+        let cacheService = ImageCacheService()
+        let proxy = ImageProxy(APIservice: imageAPIService, cacheService: cacheService)
         let repository = RealmDBService<Film>()
         let viewModel = FilmViewModel(
             networkService: movieAPIService,
-            imageService: imageAPIService,
-            repository: repository
+            repository: repository,
+            proxy: proxy
         )
         let vc = FilmsViewController()
         vc.viewModel = viewModel
@@ -28,10 +30,12 @@ final class AssemblerBuild: AssemblyProtocol {
     static func buildFilmsDetailsModule(id: Int) -> UIViewController {
         let movieAPIService = MovieAPIService()
         let imageAPIService = ImageAPIService()
+        let cacheService = ImageCacheService()
+        let proxy = ImageProxy(APIservice: imageAPIService, cacheService: cacheService)
         let viewModel = FilmDetailsViewModel(
             filmID: id,
             networkService: movieAPIService,
-            imageService: imageAPIService
+            proxy: proxy
         )
         let vc = FilmDetailsViewController()
         vc.viewModel = viewModel
