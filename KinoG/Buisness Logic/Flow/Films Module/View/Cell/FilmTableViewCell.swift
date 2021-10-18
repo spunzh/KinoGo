@@ -62,6 +62,7 @@ final class FilmTableViewCell: UITableViewCell {
     // MARK: - Private Methods
 
     override func setSelected(_: Bool, animated _: Bool) {
+        accessibilityIdentifier = "FilmsTableViewCell"
         contentView.addSubview(filmImageView)
         contentView.addSubview(filmNameLabel)
         contentView.addSubview(filmDiscriptionLabel)

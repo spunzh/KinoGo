@@ -61,7 +61,5 @@ private func urlSetup(type: FilmType) -> String {
         return "https://api.themoviedb.org/3/movie/top_rated?api_key=9ad7d04f6206bfa729848e1f3f2ffb2d&language=en-US&page=1"
     case .upcoming:
         return "https://api.themoviedb.org/3/movie/upcoming?api_key=9ad7d04f6206bfa729848e1f3f2ffb2d&language=en-US&page=1"
-    default:
-        return ""
     }
 }

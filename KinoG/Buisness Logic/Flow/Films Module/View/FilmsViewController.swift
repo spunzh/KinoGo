@@ -13,6 +13,7 @@ final class FilmsViewController: UIViewController {
 
     private let filmTableView: UITableView = {
         let tableView = UITableView()
+        tableView.accessibilityIdentifier = "FilmsTableView"
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView

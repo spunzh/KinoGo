@@ -7,8 +7,8 @@ import RealmSwift
 final class RealmDBService<RealmEntity: Object>: Repository<RealmEntity> {
     typealias Entity = RealmEntity
 
-    override func get(_ type: FilmType) -> [Entity]? {
-        let predicate = NSPredicate(format: "type == %@", type.rawValue)
+    override func get(_ type: String) -> [Entity]? {
+        let predicate = NSPredicate(format: "type == %@", type)
         do {
             let realm = try Realm()
             let objects = realm.objects(Entity.self).filter(predicate)
@@ -28,7 +28,6 @@ final class RealmDBService<RealmEntity: Object>: Repository<RealmEntity> {
     override func save(_ data: [Entity]) {
         do {
             let realm = try Realm()
-            print(realm.configuration.fileURL)
             try realm.write {
                 realm.add(data, update: .modified)
             }

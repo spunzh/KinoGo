@@ -40,7 +40,7 @@ final class FilmViewModel: FilmViewModelProtocol {
     // MARK: - Public Methods
 
     func getFilms(type: FilmType) {
-        if let films = repository?.get(type), !films.isEmpty {
+        if let films = repository?.get(type.rawValue), !films.isEmpty {
             updateViewData?(.success(films))
         } else {
             movieAPIService?.getFilms(type: type) { [weak self] results in
