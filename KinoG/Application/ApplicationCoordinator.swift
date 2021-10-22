@@ -1,4 +1,4 @@
-// Coordinator.swift
+// ApplicationCoordinator.swift
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
@@ -33,5 +33,21 @@ extension Coordinator {
 
     func setRoot(_ controller: UIViewController) {
         UIApplication.shared.keyWindow?.rootViewController = controller
+    }
+}
+
+final class ApplicationCoordinator: NSObject, Coordinator {
+    var childCoordinators: [Coordinator] = []
+    var navigationControler: UINavigationController?
+
+    func start() {
+        toMain()
+    }
+
+    private func toMain() {
+        let coordinator = FilmCoordinator()
+
+        addDependency(coordinator)
+        coordinator.start()
     }
 }

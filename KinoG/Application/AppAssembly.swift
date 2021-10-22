@@ -9,7 +9,7 @@ protocol AssemblyProtocol {
     static func buildFilmsDetailsModule(id: Int) -> UIViewController
 }
 
-final class AssemblerBuild: AssemblyProtocol {
+final class AppAssemblerBuild: AssemblyProtocol {
     static func buildFilmModule() -> UIViewController {
         let movieAPIService = MovieAPIService()
         let imageAPIService = ImageAPIService()

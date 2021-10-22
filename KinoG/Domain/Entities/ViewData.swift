@@ -11,7 +11,7 @@ enum FilmViewData<Success> {
     case failure(Error)
 }
 
-///
+/// Обьект JSON
 struct Objects: Decodable {
     /// Фильмы
     let results: [Film]
@@ -29,7 +29,7 @@ final class Film: Object, Decodable {
     @objc dynamic var overview: String
     /// Путь к картинке постера
     @objc dynamic var posterPath: String
-
+    /// Тип
     @objc dynamic var type: String?
 
     override class func primaryKey() -> String? {
