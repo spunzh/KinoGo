@@ -12,7 +12,7 @@ final class ApplicationCoordinator: NSObject, Coordinator {
         toMain()
     }
 
-    func toMain() {
+    private func toMain() {
         let coordinator = FilmCoordinator()
 
         addDependency(coordinator)

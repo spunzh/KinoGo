@@ -12,6 +12,7 @@ final class FilmDetailsViewController: UIViewController {
 
     private let filmTableView: UITableView = {
         let tableView = UITableView()
+        tableView.accessibilityIdentifier = "DetailFilmsTableView"
         tableView.separatorStyle = .none
         tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         tableView.translatesAutoresizingMaskIntoConstraints = false

@@ -19,14 +19,14 @@ final class FilmDetailsViewModel: FilmDetailsViewModelProtocol {
     // MARK: - Private Properties
 
     private let movieAPIService: MovieAPIServiceProtocol?
-    private let imageAPIService: ImageAPIServiceProtocol?
+    private let proxy: ImageLoadingProtocol?
 
     // MARK: - Initialization
 
-    init(filmID: Int, networkService: MovieAPIServiceProtocol, imageService: ImageAPIServiceProtocol) {
+    init(filmID: Int, networkService: MovieAPIServiceProtocol, proxy: ImageLoadingProtocol) {
         self.filmID = filmID
+        self.proxy = proxy
         movieAPIService = networkService
-        imageAPIService = imageService
         getFilmDetails()
     }
 
@@ -46,7 +46,7 @@ final class FilmDetailsViewModel: FilmDetailsViewModelProtocol {
     }
 
     func loadImage(path: String, completion: @escaping (Data?) -> ()) {
-        imageAPIService?.loadImage(url: path) { results in
+        proxy?.loadImage(url: path) { results in
             switch results {
             case let .success(data):
                 completion(data)

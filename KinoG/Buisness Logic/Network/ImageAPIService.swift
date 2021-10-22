@@ -3,16 +3,9 @@
 
 import Foundation
 
-protocol ImageAPIServiceProtocol {
-    func loadImage(url: String, completion: @escaping (Result<Data?, Error>) -> ())
-}
-
-final class ImageAPIService: ImageAPIServiceProtocol {
-    private let imageAdress = "https://image.tmdb.org/t/p/w500"
-
+final class ImageAPIService: ImageLoadingProtocol {
     func loadImage(url: String, completion: @escaping (Result<Data?, Error>) -> ()) {
-        let fullAdress = imageAdress + url
-        guard let URL = URL(string: fullAdress) else { return }
+        guard let URL = URL(string: url) else { return }
         URLSession.shared.dataTask(with: URL) { data, _, error in
             guard let error = error else {
                 completion(.success(data))
