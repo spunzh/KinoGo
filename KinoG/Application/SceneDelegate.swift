@@ -1,5 +1,5 @@
 // SceneDelegate.swift
-// Copyright © RoadMap. All rights reserved.
+// Copyright © Spunzh. All rights reserved.
 
 import UIKit
 
@@ -11,9 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
-
-        let mainVC = FilmsViewController()
-        window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
+
+        let coordinator = ApplicationCoordinator()
+        coordinator.start()
     }
 }
