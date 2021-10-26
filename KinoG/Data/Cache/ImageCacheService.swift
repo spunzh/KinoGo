@@ -1,5 +1,5 @@
 // ImageCacheService.swift
-// Copyright © RoadMap. All rights reserved.
+// Copyright © Spunzh. All rights reserved.
 
 import Foundation
 
@@ -13,7 +13,7 @@ protocol ImageCacheServiceProtocol {
 final class ImageCacheService: ImageCacheServiceProtocol {
     // MARK: - Private Properties
 
-    private var pathName: String {
+    private var pathName: String! {
         let pathName = "images"
 
         guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first

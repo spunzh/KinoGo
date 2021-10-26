@@ -1,5 +1,5 @@
 // FilmCoordinator.swift
-// Copyright © RoadMap. All rights reserved.
+// Copyright © Spunzh. All rights reserved.
 
 import Foundation
 import UIKit
@@ -9,7 +9,7 @@ final class FilmCoordinator: NSObject, Coordinator {
     var childCoordinators: [Coordinator] = []
 
     func start() {
-        guard let vc = AssemblerBuild.buildFilmModule() as? FilmsViewController else { return }
+        guard let vc = AppAssemblerBuild.buildFilmModule() as? FilmsViewController else { return }
         vc.viewModel?.onDetails = { id in
             self.toFilmDetailsController(id: id)
         }
@@ -20,7 +20,7 @@ final class FilmCoordinator: NSObject, Coordinator {
     }
 
     private func toFilmDetailsController(id: Int) {
-        let vc = AssemblerBuild.buildFilmsDetailsModule(id: id)
+        let vc = AppAssemblerBuild.buildFilmsDetailsModule(id: id)
         navigationControler?.pushViewController(vc, animated: true)
     }
 }

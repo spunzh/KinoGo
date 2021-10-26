@@ -1,5 +1,5 @@
 // FilmViewModelTests.swift
-// Copyright © RoadMap. All rights reserved.
+// Copyright © Spunzh. All rights reserved.
 
 @testable import KinoG
 import XCTest

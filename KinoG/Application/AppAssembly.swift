@@ -1,5 +1,5 @@
-// Assembly.swift
-// Copyright © RoadMap. All rights reserved.
+// AppAssembly.swift
+// Copyright © Spunzh. All rights reserved.
 
 import Foundation
 import UIKit

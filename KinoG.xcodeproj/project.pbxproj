@@ -285,9 +285,9 @@
 		BA3F90C42722FFEB00BD3FB9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BAAD790526B57C6000ECA342 /* Info.plist */,
 				BAAD790026B57C6000ECA342 /* Assets.xcassets */,
 				BAAD790226B57C6000ECA342 /* LaunchScreen.storyboard */,
-				BAAD790526B57C6000ECA342 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -326,8 +326,8 @@
 			isa = PBXGroup;
 			children = (
 				BA3F90BB2722F1E300BD3FB9 /* Application */,
-				BA3F90BC2722F20C00BD3FB9 /* Domain */,
 				BA3F90BE2722F27100BD3FB9 /* Presentation */,
+				BA3F90BC2722F20C00BD3FB9 /* Domain */,
 				BA3F90BF2722F35700BD3FB9 /* Data */,
 				BA3F90C42722FFEB00BD3FB9 /* Resources */,
 			);
@@ -858,6 +858,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -913,6 +914,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -931,7 +933,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5H9PQ69L77;
-				INFOPLIST_FILE = KinoG/Info.plist;
+				INFOPLIST_FILE = KinoG/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -951,7 +953,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5H9PQ69L77;
-				INFOPLIST_FILE = KinoG/Info.plist;
+				INFOPLIST_FILE = KinoG/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
